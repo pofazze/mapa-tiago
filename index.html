@@ -8,1125 +8,923 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --bg: #06060B;
-  --bg-2: #0C0C14;
-  --bg-3: #13131F;
-  --surface: rgba(255,255,255,0.03);
-  --surface-hover: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.06);
-  --border-hover: rgba(255,255,255,0.12);
-  --white: #F0F0F5;
-  --white-60: rgba(240,240,245,0.6);
-  --white-40: rgba(240,240,245,0.4);
-  --white-20: rgba(240,240,245,0.2);
-  --accent: #8B5CF6;
-  --accent-2: #A78BFA;
-  --accent-3: #C4B5FD;
-  --accent-bg: rgba(139,92,246,0.08);
-  --accent-border: rgba(139,92,246,0.15);
-  --green: #10B981;
-  --green-bg: rgba(16,185,129,0.08);
-  --green-border: rgba(16,185,129,0.15);
-  --red: #EF4444;
-  --red-bg: rgba(239,68,68,0.08);
-  --red-border: rgba(239,68,68,0.15);
-  --orange: #F59E0B;
-  --orange-bg: rgba(245,158,11,0.08);
-  --orange-border: rgba(245,158,11,0.15);
-  --blue: #3B82F6;
-  --blue-bg: rgba(59,130,246,0.08);
-  --blue-border: rgba(59,130,246,0.15);
-  --radius: 20px;
-  --radius-sm: 12px;
-  --radius-xs: 8px;
+  --bg: #0C0E13;
+  --bg-2: #151820;
+  --surface: rgba(196,180,150,0.04);
+  --surface-2: rgba(196,180,150,0.07);
+  --glass: rgba(196,180,150,0.03);
+  --glass-border: rgba(196,180,150,0.10);
+  --glass-border-hover: rgba(196,180,150,0.18);
+  --white: #E8E4DD;
+  --w80: rgba(232,228,221,0.8);
+  --w60: rgba(232,228,221,0.6);
+  --w40: rgba(232,228,221,0.38);
+  --w20: rgba(232,228,221,0.2);
+  --w10: rgba(232,228,221,0.1);
+  --accent: #A8BDD0;
+  --accent-2: #A3B8CC;
+  --accent-3: #5E7080;
+  --accent-bg: rgba(168,189,208,0.08);
+  --accent-border: rgba(168,189,208,0.15);
+  --warm: #C4B496;
+  --warm-2: #D4C4A6;
+  --warm-dark: #C4854A;
+  --teal: #A8BDD0;
+  --green: #5A9A7A;
+  --green-bg: rgba(90,154,122,0.08);
+  --green-border: rgba(90,154,122,0.15);
+  --red: #B85450;
+  --red-bg: rgba(184,84,80,0.08);
+  --red-border: rgba(184,84,80,0.15);
+  --orange: #C4854A;
+  --orange-bg: rgba(196,133,74,0.08);
+  --orange-border: rgba(196,133,74,0.15);
+  --r: 20px;
+  --r-sm: 14px;
+  --r-xs: 8px;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
-
 body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background: var(--bg);
-  color: var(--white);
-  line-height: 1.7;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+  font-family:'Inter',-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
 }
+h1,h2,h3,h4 { font-family:'Space Grotesk',sans-serif; letter-spacing:-0.03em; }
+img { display:block; max-width:100%; }
 
-h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; }
+/* ---- UTILITIES ---- */
+.wrap { max-width:960px; margin:0 auto; padding:0 28px; position:relative; z-index:2; }
 
-/* ---- GLOW MESH ---- */
-.glow {
-  position: fixed;
-  width: 600px; height: 600px;
-  border-radius: 50%;
-  filter: blur(180px);
-  opacity: 0.12;
-  pointer-events: none;
-  z-index: 0;
+.glass-card {
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:var(--r);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  transition:border-color .3s,background .3s;
 }
-.glow-1 { background: #8B5CF6; top: -200px; left: -100px; }
-.glow-2 { background: #3B82F6; top: 40%; right: -200px; }
-.glow-3 { background: #8B5CF6; bottom: -200px; left: 30%; }
-
-/* ---- CONTAINER ---- */
-.wrap { max-width: 960px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+.glass-card:hover { border-color:var(--glass-border-hover); background:var(--surface-2); }
 
 /* ---- HERO ---- */
 .hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 80px 28px;
-  position: relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
 }
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--accent-bg);
-  border: 1px solid var(--accent-border);
-  border-radius: 100px;
-  padding: 8px 20px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--accent-2);
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  margin-bottom: 28px;
+.hero-bg {
+  position:absolute;
+  inset:0;
+  background:
+    url('https://images.pexels.com/photos/1250655/pexels-photo-1250655.jpeg?auto=compress&cs=tinysrgb&w=1920')
+    center/cover no-repeat;
+  opacity:0.18;
+  filter:saturate(0.3) contrast(1.1);
 }
-.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.hero-overlay {
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(135deg,
+      rgba(196,133,74,0.12) 0%,
+      rgba(12,14,19,0.88) 40%,
+      rgba(12,14,19,0.92) 60%,
+      rgba(168,189,208,0.08) 100%
+    );
+}
+.hero-grain {
+  position:absolute;
+  inset:0;
+  opacity:0.03;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-content {
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding:80px 28px;
+  max-width:800px;
+}
+.hero .badge {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(196,180,150,0.08);
+  border:1px solid rgba(196,180,150,0.18);
+  border-radius:100px;
+  padding:8px 22px;
+  font-size:11px;
+  font-weight:600;
+  color:var(--warm);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:32px;
+}
+.hero .badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--warm-dark); }
 
 .hero h1 {
-  font-size: clamp(40px, 7vw, 72px);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  margin-bottom: 20px;
+  font-size:clamp(48px,8vw,88px);
+  font-weight:700;
+  line-height:1.02;
+  margin-bottom:24px;
 }
-.hero h1 .gradient {
-  background: linear-gradient(135deg, var(--accent), var(--accent-3), #E0E7FF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.hero h1 .grad-warm {
+  background:linear-gradient(135deg, var(--warm-dark), var(--warm), var(--warm-2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
 }
-.hero p.sub {
-  font-size: clamp(16px, 2vw, 19px);
-  color: var(--white-40);
-  max-width: 540px;
-  font-weight: 300;
-  margin-bottom: 48px;
-  line-height: 1.7;
+.hero .sub {
+  font-size:clamp(16px,2vw,19px);
+  color:var(--w40);
+  max-width:520px;
+  margin:0 auto 48px;
+  font-weight:300;
+  line-height:1.75;
 }
-
 .meta-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
 }
 .meta-pill {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  padding: 10px 22px;
-  font-size: 13px;
-  color: var(--white-60);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  border-radius:100px;
+  padding:10px 22px;
+  font-size:13px;
+  color:var(--w60);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
 }
-.meta-pill strong { color: var(--white); font-weight: 600; }
+.meta-pill strong { color:var(--white); font-weight:600; }
 
-/* ---- SECTIONS ---- */
-.section { padding: 100px 0; }
+/* ---- SECTION ---- */
+.section { padding:100px 0; position:relative; }
 
-.section-head {
-  margin-bottom: 56px;
+.section-photo {
+  position:relative;
+  overflow:hidden;
 }
+.section-photo .photo-bg {
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  filter:saturate(0.2) contrast(1.1);
+}
+.section-photo .photo-overlay {
+  position:absolute;
+  inset:0;
+}
+
+.section-head { margin-bottom:56px; }
 .section-head .label {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--accent-2);
-  font-weight: 500;
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-weight:500;
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 .section-head .label::before {
-  content: '';
-  width: 24px;
-  height: 1px;
-  background: var(--accent);
+  content:'';
+  width:28px;
+  height:1px;
 }
+.label-warm { color:var(--warm-2); }
+.label-warm::before { background:var(--warm); }
+.label-teal { color:var(--teal); }
+.label-teal::before { background:var(--teal); }
+.label-accent { color:var(--accent-2); }
+.label-accent::before { background:var(--accent); }
+.label-green { color:var(--green); }
+.label-green::before { background:var(--green); }
+
 .section-head h2 {
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 14px;
-  line-height: 1.15;
+  font-size:clamp(30px,4.5vw,48px);
+  font-weight:700;
+  margin-bottom:14px;
+  line-height:1.1;
 }
 .section-head p {
-  font-size: 16px;
-  color: var(--white-40);
-  max-width: 620px;
-  line-height: 1.8;
+  font-size:16px;
+  color:var(--w40);
+  max-width:600px;
+  line-height:1.8;
 }
 
-.divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
-}
+.divider { height:1px; background:linear-gradient(90deg, transparent, var(--glass-border), transparent); }
 
-/* ---- GLASS CARDS ---- */
-.glass {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  transition: border-color 0.3s, background 0.3s;
-}
-.glass:hover {
-  border-color: var(--border-hover);
-  background: var(--surface-hover);
-}
-
-/* ---- NUMBERS GRID ---- */
+/* ---- NUMBER GRID ---- */
 .num-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 64px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:64px;
 }
-@media (max-width: 640px) { .num-grid { grid-template-columns: repeat(2, 1fr); } }
-
-.num-card {
-  padding: 28px 24px;
-  text-align: center;
-}
+@media(max-width:640px){.num-grid{grid-template-columns:repeat(2,1fr);}}
+.num-card { padding:28px 20px; text-align:center; }
 .num-card .num {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 36px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  background: linear-gradient(135deg, var(--white), var(--white-60));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 6px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:34px;
+  font-weight:700;
+  letter-spacing:-0.03em;
+  margin-bottom:4px;
 }
-.num-card .num-label {
-  font-size: 12px;
-  color: var(--white-40);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 500;
+.num-card .num.warm { color:var(--warm); }
+.num-card .nl {
+  font-size:11px;
+  color:var(--w40);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-weight:500;
 }
 
-/* ---- SCORE TABLE ---- */
-.score-table {
-  margin-bottom: 64px;
+/* ---- SCORE ---- */
+.score-wrap { margin-bottom:64px; }
+.s-row {
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:14px 0;
+  border-bottom:1px solid var(--glass-border);
 }
-.score-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border);
-}
-.score-row:last-child { border-bottom: none; }
+.s-row:last-child { border-bottom:none; }
+.s-name { flex:1; font-size:14px; font-weight:500; }
+.s-bar { width:180px; height:5px; background:rgba(255,255,255,0.04); border-radius:100px; overflow:hidden; flex-shrink:0; }
+.s-fill { height:100%; border-radius:100px; }
+.s-fill.low { background:linear-gradient(90deg,#B85450,#C4854A); }
+.s-fill.mid { background:linear-gradient(90deg,#C4854A,#C4B496); }
+.s-fill.high { background:linear-gradient(90deg,#C4B496,#5A9A7A); }
+.s-fill.top { background:linear-gradient(90deg,#5A9A7A,#7AB89A); }
+.s-val { width:40px; text-align:right; font-size:14px; font-weight:700; font-family:'Space Grotesk',sans-serif; flex-shrink:0; }
+.s-val.c-red { color:#B85450; }
+.s-val.c-orange { color:#C4854A; }
+.s-val.c-yellow { color:var(--warm); }
+.s-val.c-green { color:#5A9A7A; }
+@media(max-width:500px){.s-bar{width:100px;}}
 
-.score-name {
-  flex: 1;
-  font-size: 14px;
-  font-weight: 500;
-  min-width: 0;
+/* ---- DIAGNOSTIC GRID ---- */
+.d-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
-.score-bar-wrap {
-  width: 200px;
-  height: 6px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 100px;
-  overflow: hidden;
-  flex-shrink: 0;
+@media(max-width:640px){.d-grid{grid-template-columns:1fr;}}
+.d-card {
+  padding:28px;
+  position:relative;
+  overflow:hidden;
 }
-.score-bar-fill {
-  height: 100%;
-  border-radius: 100px;
-  background: linear-gradient(90deg, var(--red), var(--orange));
+.d-card::after {
+  content:'';
+  position:absolute;
+  top:0;left:0;
+  width:3px;height:100%;
+  border-radius:0 4px 4px 0;
 }
-.score-bar-fill.mid { background: linear-gradient(90deg, var(--orange), #FBBF24); }
-.score-bar-fill.good { background: linear-gradient(90deg, #FBBF24, var(--green)); }
-.score-bar-fill.great { background: linear-gradient(90deg, var(--green), #34D399); }
+.d-card.crit::after { background:var(--red); }
+.d-card.warn::after { background:var(--orange); }
+.d-card.opp::after { background:var(--green); }
+.d-card h4 { font-size:15px; font-weight:600; margin-bottom:8px; }
+.d-card p { font-size:13px; color:var(--w40); line-height:1.65; }
 
-.score-val {
-  width: 44px;
-  text-align: right;
-  font-size: 14px;
-  font-weight: 700;
-  font-family: 'Space Grotesk', sans-serif;
-  flex-shrink: 0;
-}
-.score-val.critical { color: var(--red); }
-.score-val.warn { color: var(--orange); }
-.score-val.ok { color: #FBBF24; }
-.score-val.excellent { color: var(--green); }
-
-@media (max-width: 500px) {
-  .score-bar-wrap { width: 100px; }
-}
-
-/* ---- DIAGNOSTIC CARDS ---- */
-.diag-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-@media (max-width: 640px) { .diag-grid { grid-template-columns: 1fr; } }
-
-.diag-card {
-  padding: 28px;
-  position: relative;
-  overflow: hidden;
-}
-.diag-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 3px;
-  height: 100%;
-  border-radius: 0 4px 4px 0;
-}
-.diag-card.critical::before { background: var(--red); }
-.diag-card.warn::before { background: var(--orange); }
-.diag-card.opportunity::before { background: var(--green); }
-
-.diag-card h4 {
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.diag-card p {
-  font-size: 13px;
-  color: var(--white-40);
-  line-height: 1.65;
-}
-
-/* ---- COMPARISON ---- */
+/* ---- COMPARE ---- */
 .compare {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin: 56px 0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:56px 0;
 }
-@media (max-width: 700px) { .compare { grid-template-columns: 1fr; } }
-
-.compare-card { padding: 36px 32px; }
-
-.compare-card .card-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-weight: 600;
-  margin-bottom: 8px;
+@media(max-width:700px){.compare{grid-template-columns:1fr;}}
+.cmp-card { padding:36px 32px; }
+.cmp-label {
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-weight:600;
+  margin-bottom:8px;
 }
-.compare-card .card-label.red { color: var(--red); }
-.compare-card .card-label.green { color: var(--green); }
-
-.compare-card h3 {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 24px;
+.cmp-label.red { color:var(--red); }
+.cmp-label.green { color:var(--green); }
+.cmp-card h3 { font-size:22px; font-weight:700; margin-bottom:24px; }
+.cmp-card ul { list-style:none; padding:0; }
+.cmp-card ul li {
+  font-size:14px;
+  color:var(--w60);
+  padding:7px 0;
+  border-bottom:1px solid var(--glass-border);
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  line-height:1.55;
 }
-
-.compare-card ul {
-  list-style: none;
-  padding: 0;
-}
-.compare-card ul li {
-  font-size: 14px;
-  color: var(--white-60);
-  padding: 7px 0;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  line-height: 1.55;
-}
-.compare-card ul li:last-child { border-bottom: none; }
-.compare-card ul li .dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  margin-top: 8px;
-  flex-shrink: 0;
-}
-.compare-card.a ul li .dot { background: var(--red); }
-.compare-card.b ul li .dot { background: var(--green); }
+.cmp-card ul li:last-child { border-bottom:none; }
+.cmp-card ul li .dot { width:5px;height:5px;border-radius:50%;margin-top:8px;flex-shrink:0; }
+.cmp-card.a .dot { background:var(--red); }
+.cmp-card.b .dot { background:var(--green); }
 
 /* ---- QUOTE ---- */
 .quote-block {
-  border-left: 2px solid var(--accent);
-  padding: 24px 28px;
-  margin: 56px 0;
-  background: var(--accent-bg);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-left:2px solid var(--warm-dark);
+  padding:24px 28px;
+  margin:56px 0;
+  background:rgba(196,180,150,0.03);
+  border-radius:0 var(--r-sm) var(--r-sm) 0;
 }
-.quote-block p {
-  font-size: 16px;
-  font-style: italic;
-  color: var(--white-60);
-  line-height: 1.8;
+.quote-block p { font-size:16px; font-style:italic; color:var(--w60); line-height:1.8; }
+.quote-block .auth { font-size:13px; color:var(--warm); font-style:normal; margin-top:10px; font-weight:500; }
+
+/* ---- PHOTO BREAK ---- */
+.photo-break {
+  position:relative;
+  height:400px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
-.quote-block .author {
-  font-size: 13px;
-  color: var(--accent-2);
-  font-style: normal;
-  margin-top: 10px;
-  font-weight: 500;
+.photo-break .pb-img {
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  filter:saturate(0.25);
+}
+.photo-break .pb-overlay {
+  position:absolute;
+  inset:0;
+}
+.photo-break .pb-content {
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding:28px;
+}
+.photo-break .pb-content h2 {
+  font-size:clamp(28px,5vw,52px);
+  font-weight:700;
+  line-height:1.1;
+  margin-bottom:12px;
+}
+.photo-break .pb-content p {
+  font-size:17px;
+  color:var(--w40);
+  max-width:480px;
+  margin:0 auto;
 }
 
 /* ---- ROADMAP ---- */
-.roadmap { position: relative; }
-
+.roadmap { position:relative; }
 .phase {
-  position: relative;
-  padding-left: 48px;
-  padding-bottom: 56px;
+  position:relative;
+  padding-left:48px;
+  padding-bottom:56px;
 }
-.phase:last-child { padding-bottom: 0; }
-
+.phase:last-child { padding-bottom:0; }
 .phase::before {
-  content: '';
-  position: absolute;
-  left: 15px;
-  top: 36px;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(180deg, var(--accent-border), transparent);
+  content:'';
+  position:absolute;
+  left:15px;top:36px;bottom:0;
+  width:1px;
+  background:linear-gradient(180deg, var(--glass-border-hover), transparent);
 }
-.phase:last-child::before { display: none; }
+.phase:last-child::before { display:none; }
+.p-num {
+  position:absolute;
+  left:0;top:0;
+  width:32px;height:32px;
+  border-radius:50%;
+  background:var(--bg);
+  border:2px solid var(--warm-dark);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  font-weight:700;
+  color:var(--warm);
+  font-family:'Space Grotesk',sans-serif;
+}
+.p-head { display:flex; align-items:center; gap:12px; margin-bottom:8px; flex-wrap:wrap; }
+.p-title { font-size:22px; font-weight:700; }
+.p-tag {
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-weight:600;
+  padding:4px 14px;
+  border-radius:100px;
+}
+.p-tag.urg { background:var(--red-bg); color:var(--red); border:1px solid var(--red-border); }
+.p-tag.norm { background:var(--accent-bg); color:var(--accent-2); border:1px solid var(--accent-border); }
+.p-desc { font-size:15px; color:var(--w40); margin-bottom:20px; line-height:1.7; max-width:700px; }
 
-.phase-num {
-  position: absolute;
-  left: 0; top: 0;
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent-2);
-  font-family: 'Space Grotesk', sans-serif;
+.tl { overflow:hidden; }
+.tk {
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  padding:16px 24px;
+  border-bottom:1px solid var(--glass-border);
+  transition:background .2s;
 }
+.tk:last-child { border-bottom:none; }
+.tk:hover { background:var(--surface-2); }
+.tk-box {
+  width:20px;height:20px;
+  border-radius:6px;
+  border:2px solid var(--glass-border-hover);
+  flex-shrink:0;
+  margin-top:2px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  color:transparent;
+  cursor:pointer;
+  transition:all .2s;
+}
+.tk-box.done { background:var(--warm-dark); border-color:var(--warm-dark); color:#fff; }
+.tk h5 { font-size:14px; font-weight:600; margin-bottom:3px; font-family:'Inter',sans-serif; }
+.tk p { font-size:13px; color:var(--w40); line-height:1.6; }
 
-.phase-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
+.urg-tag {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  font-weight:600;
+  color:var(--red);
+  background:var(--red-bg);
+  border:1px solid var(--red-border);
+  padding:3px 10px;
+  border-radius:100px;
 }
-.phase-title {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.phase-tag {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-weight: 600;
-  padding: 4px 14px;
-  border-radius: 100px;
-}
-.phase-tag.urgent { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
-.phase-tag.normal { background: var(--accent-bg); color: var(--accent-2); border: 1px solid var(--accent-border); }
-
-.phase-desc {
-  font-size: 15px;
-  color: var(--white-40);
-  margin-bottom: 20px;
-  line-height: 1.7;
-  max-width: 700px;
-}
-
-.task-list {
-  overflow: hidden;
-}
-.task {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 16px 24px;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.2s;
-  cursor: default;
-}
-.task:last-child { border-bottom: none; }
-.task:hover { background: var(--surface-hover); }
-
-.task-box {
-  width: 20px; height: 20px;
-  border-radius: 6px;
-  border: 2px solid var(--border-hover);
-  flex-shrink: 0;
-  margin-top: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  color: transparent;
-  transition: all 0.2s;
-  cursor: pointer;
-}
-.task-box.done {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: white;
-}
-.task h5 {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 3px;
-  font-family: 'Inter', sans-serif;
-}
-.task p {
-  font-size: 13px;
-  color: var(--white-40);
-  line-height: 1.6;
-}
+.urg-tag .pls { width:5px;height:5px;border-radius:50%;background:var(--red);animation:pls 1.5s infinite; }
+@keyframes pls{0%,100%{opacity:1}50%{opacity:.3}}
 
 /* ---- TEAM TABLE ---- */
-.team-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  overflow: hidden;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
+.t-table {
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  border-radius:var(--r);
+  border:1px solid var(--glass-border);
+  overflow:hidden;
 }
-.team-table th, .team-table td {
-  padding: 16px 20px;
-  text-align: left;
-  font-size: 13px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
+.t-table th,.t-table td {
+  padding:16px 20px;
+  text-align:left;
+  font-size:13px;
+  border-bottom:1px solid var(--glass-border);
+  vertical-align:top;
 }
-.team-table th {
-  background: var(--surface-hover);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--white-40);
-  font-weight: 600;
+.t-table th {
+  background:var(--surface-2);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:var(--w40);
+  font-weight:600;
 }
-.team-table tr:last-child td { border-bottom: none; }
-.team-table td { color: var(--white-60); }
-.team-table td:first-child { color: var(--white); font-weight: 600; }
-.team-table tr.new-hire td { background: var(--accent-bg); }
+.t-table tr:last-child td { border-bottom:none; }
+.t-table td { color:var(--w60); }
+.t-table td:first-child { color:var(--white); font-weight:600; }
+.t-table tr.nh td { background:rgba(196,180,150,0.04); }
 
 /* ---- FUNNEL ---- */
-.funnel-step {
-  display: flex;
-  align-items: stretch;
-  gap: 12px;
-  margin-bottom: 10px;
+.f-step { display:flex; align-items:stretch; gap:10px; margin-bottom:8px; }
+.f-num {
+  width:40px;height:40px;
+  border-radius:50%;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  font-weight:700;
+  color:var(--warm-2);
+  flex-shrink:0;
+  font-family:'Space Grotesk',sans-serif;
 }
-.funnel-num {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--accent-2);
-  flex-shrink: 0;
-  font-family: 'Space Grotesk', sans-serif;
+.f-bar {
+  flex:1;
+  padding:18px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  position:relative;
+  overflow:hidden;
 }
-.funnel-bar {
-  flex: 1;
-  padding: 18px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  position: relative;
-  overflow: hidden;
-}
-.funnel-bar::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-}
-.f-blue::before { background: var(--blue); }
-.f-accent::before { background: var(--accent); }
-.f-orange::before { background: var(--orange); }
-.f-gold::before { background: #FBBF24; }
-.f-green::before { background: var(--green); }
-
-.funnel-bar h5 { font-size: 14px; font-weight: 600; margin-bottom: 2px; font-family: 'Inter', sans-serif; }
-.funnel-bar .f-desc { font-size: 13px; color: var(--white-40); }
-.funnel-bar .f-who { font-size: 12px; color: var(--white-40); text-align: right; white-space: nowrap; }
+.f-bar::before { content:'';position:absolute;left:0;top:0;bottom:0;width:3px; }
+.fb-blue::before{background:var(--accent);}
+.fb-purple::before{background:#5E7080;}
+.fb-orange::before{background:var(--warm-dark);}
+.fb-gold::before{background:var(--warm);}
+.fb-green::before{background:var(--green);}
+.f-bar h5 { font-size:14px;font-weight:600;margin-bottom:2px;font-family:'Inter',sans-serif; }
+.f-bar .fd { font-size:13px;color:var(--w40); }
+.f-bar .fw { font-size:12px;color:var(--w40);text-align:right;white-space:nowrap; }
 
 /* ---- MATH BOX ---- */
 .math-box {
-  background: linear-gradient(135deg, rgba(139,92,246,0.06), rgba(59,130,246,0.04));
-  border: 1px solid var(--accent-border);
-  border-radius: var(--radius);
-  padding: 40px;
-  margin: 56px 0;
+  background:linear-gradient(135deg,rgba(196,180,150,0.04),rgba(168,189,208,0.03));
+  border:1px solid rgba(196,180,150,0.12);
+  border-radius:var(--r);
+  padding:40px;
+  margin:56px 0;
 }
-.math-box h3 {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  letter-spacing: -0.02em;
-}
-.math-box ul {
-  list-style: none;
-  padding: 0;
-}
+.math-box h3 { font-size:24px;font-weight:700;margin-bottom:20px; }
+.math-box ul { list-style:none;padding:0; }
 .math-box ul li {
-  font-size: 15px;
-  color: var(--white-60);
-  padding: 8px 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  line-height: 1.5;
+  font-size:15px;
+  color:var(--w60);
+  padding:8px 0;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  line-height:1.5;
 }
-.math-box ul li::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-}
-.math-box .highlight {
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--accent-border);
-  font-size: 16px;
-  color: var(--accent-2);
-  font-weight: 600;
+.math-box ul li::before { content:'';width:6px;height:6px;border-radius:50%;background:var(--warm-dark);flex-shrink:0; }
+.math-box .hl {
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid rgba(196,180,150,0.12);
+  font-size:16px;
+  color:var(--warm);
+  font-weight:600;
 }
 
-/* ---- THIS WEEK ---- */
-.week-tasks { margin: 40px 0; }
-.week-task {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border);
+/* ---- WEEK TASKS ---- */
+.wk { margin:40px 0; }
+.wk-item { display:flex;align-items:flex-start;gap:16px;padding:20px 0;border-bottom:1px solid var(--glass-border); }
+.wk-item:last-child { border-bottom:none; }
+.wk-n {
+  width:28px;height:28px;
+  border-radius:8px;
+  background:rgba(196,180,150,0.06);
+  border:1px solid rgba(196,180,150,0.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  font-weight:700;
+  color:var(--warm);
+  flex-shrink:0;
+  font-family:'Space Grotesk',sans-serif;
 }
-.week-task:last-child { border-bottom: none; }
-.week-num {
-  width: 28px; height: 28px;
-  border-radius: 8px;
-  background: var(--accent-bg);
-  border: 1px solid var(--accent-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent-2);
-  flex-shrink: 0;
-  font-family: 'Space Grotesk', sans-serif;
-}
-.week-task h5 { font-size: 15px; font-weight: 600; margin-bottom: 4px; font-family: 'Inter', sans-serif; }
-.week-task p { font-size: 13px; color: var(--white-40); line-height: 1.6; }
+.wk-item h5 { font-size:15px;font-weight:600;margin-bottom:4px;font-family:'Inter',sans-serif; }
+.wk-item p { font-size:13px;color:var(--w40);line-height:1.6; }
 
 /* ---- CTA ---- */
 .cta {
-  text-align: center;
-  padding: 100px 28px;
+  text-align:center;
+  padding:100px 28px;
+  position:relative;
+  overflow:hidden;
 }
+.cta-bg {
+  position:absolute;
+  inset:0;
+  background:url('https://images.pexels.com/photos/11437278/pexels-photo-11437278.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+  opacity:0.08;
+  filter:saturate(0) contrast(1.2);
+}
+.cta-overlay {
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center,rgba(8,8,13,0.7),rgba(8,8,13,0.95));
+}
+.cta-content { position:relative;z-index:2; }
 .cta h2 {
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 16px;
-  line-height: 1.15;
+  font-size:clamp(30px,5vw,52px);
+  font-weight:700;
+  margin-bottom:16px;
+  line-height:1.1;
 }
-.cta h2 .gradient {
-  background: linear-gradient(135deg, var(--accent), var(--accent-3));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.cta h2 .grad-warm {
+  background:linear-gradient(135deg,var(--warm-dark),var(--warm),var(--warm-2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
 }
 .cta p {
-  font-size: 17px;
-  color: var(--white-40);
-  max-width: 520px;
-  margin: 0 auto 36px;
-  line-height: 1.7;
+  font-size:17px;
+  color:var(--w40);
+  max-width:520px;
+  margin:0 auto 36px;
+  line-height:1.7;
 }
-.cta-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: linear-gradient(135deg, var(--accent), #6D28D9);
-  color: white;
-  font-weight: 700;
-  font-size: 13px;
-  padding: 14px 36px;
-  border-radius: 100px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.cta-btn {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:linear-gradient(135deg,var(--warm-dark),#6B3A1A);
+  color:var(--white);
+  font-weight:700;
+  font-size:13px;
+  padding:14px 36px;
+  border-radius:100px;
+  letter-spacing:1px;
+  text-transform:uppercase;
 }
 
-/* ---- FOOTER ---- */
 .footer {
-  text-align: center;
-  padding: 40px 28px;
-  border-top: 1px solid var(--border);
+  text-align:center;
+  padding:40px 28px;
+  border-top:1px solid var(--glass-border);
 }
-.footer .brand {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--accent-2);
-  margin-bottom: 6px;
-}
-.footer p { font-size: 12px; color: var(--white-40); }
-
-/* ---- URGENCY ---- */
-.urgency-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--red);
-  background: var(--red-bg);
-  border: 1px solid var(--red-border);
-  padding: 3px 10px;
-  border-radius: 100px;
-}
-.urgency-tag .pulse {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--red);
-  animation: pulse 1.5s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+.footer .brand { font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--warm);margin-bottom:6px; }
+.footer p { font-size:12px;color:var(--w40); }
 
 /* ---- RESPONSIVE ---- */
-@media (max-width: 640px) {
-  .hero { min-height: auto; padding: 80px 20px 60px; }
-  .section { padding: 72px 0; }
-  .num-grid { grid-template-columns: repeat(2, 1fr); }
-  .phase { padding-left: 40px; }
-  .phase-num { width: 28px; height: 28px; font-size: 12px; }
-  .funnel-step { flex-direction: column; gap: 8px; }
-  .funnel-num { width: 32px; height: 32px; }
-  .team-table { font-size: 12px; }
-  .team-table th, .team-table td { padding: 12px 14px; }
-  .math-box { padding: 28px; }
+@media(max-width:640px){
+  .hero{min-height:auto;}
+  .section{padding:72px 0;}
+  .phase{padding-left:40px;}
+  .p-num{width:28px;height:28px;font-size:12px;}
+  .f-step{flex-direction:column;gap:6px;}
+  .f-num{width:32px;height:32px;}
+  .photo-break{height:300px;}
 }
 
-/* ---- PRINT ---- */
 @media print {
-  body { background: #fff; color: #111; }
-  .glow { display: none; }
-  .glass { background: #f8f8fa; border-color: #e0e0e0; }
-  .section-head .label, .badge, .phase-tag, .phase-num { color: #6D28D9; }
-  .white-40, .section-head p, .phase-desc, .diag-card p, .task p { color: #555; }
+  body{background:#fff;color:#111;}
+  .hero-bg,.hero-overlay,.hero-grain,.photo-break .pb-img,.photo-break .pb-overlay,.cta-bg,.cta-overlay{display:none;}
+  .glass-card{background:#f8f8fa;border-color:#e0e0e0;}
 }
 </style>
 </head>
 <body>
 
-<div class="glow glow-1"></div>
-<div class="glow glow-2"></div>
-<div class="glow glow-3"></div>
-
-<!-- HERO -->
+<!-- ============ HERO ============ -->
 <section class="hero">
-  <div class="badge">Mentoria CPP</div>
-  <h1>Mapa do Tesouro<br><span class="gradient">Dr. Thiago</span></h1>
-  <p class="sub">O caminho completo da transicao: de cirurgiao vascular no convenio para o Cirurgiao Particular Premium de Porto Alegre.</p>
-  <div class="meta-row">
-    <div class="meta-pill"><strong>Cirurgia Vascular</strong></div>
-    <div class="meta-pill"><strong>Porto Alegre</strong> — RS</div>
-    <div class="meta-pill">Shopping <strong>Barra do Papo</strong></div>
-    <div class="meta-pill"><strong>Abril 2026</strong></div>
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-content">
+    <div class="badge">Mentoria CPP</div>
+    <h1>Mapa do<br>Tesouro<br><span class="grad-warm">Dr. Thiago</span></h1>
+    <p class="sub">O caminho completo da transicao: de cirurgiao vascular no convenio para o Cirurgiao Particular Premium de Porto Alegre.</p>
+    <div class="meta-row">
+      <div class="meta-pill"><strong>Cirurgia Vascular</strong></div>
+      <div class="meta-pill"><strong>Porto Alegre</strong> — RS</div>
+      <div class="meta-pill">Shopping <strong>Barra do Papo</strong></div>
+      <div class="meta-pill"><strong>Abril 2026</strong></div>
+    </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- PONTO A -->
+<!-- ============ PONTO A ============ -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
-      <div class="label">Diagnostico Atual</div>
-      <h2>Ponto A: Onde voce esta hoje</h2>
+      <div class="label label-warm">Diagnostico Atual</div>
+      <h2>Ponto A: Onde voce<br>esta hoje</h2>
       <p>Antes de tracar o caminho, precisamos enxergar com clareza absoluta o ponto de partida. Sem julgamento. Com precisao cirurgica.</p>
     </div>
 
     <div class="num-grid">
-      <div class="glass num-card"><div class="num">~7</div><div class="num-label">Particulares/mes</div></div>
-      <div class="glass num-card"><div class="num">R$900</div><div class="num-label">Consulta particular</div></div>
-      <div class="glass num-card"><div class="num">R$108</div><div class="num-label">Consulta convenio</div></div>
-      <div class="glass num-card"><div class="num">~5%</div><div class="num-label">% Particular</div></div>
-      <div class="glass num-card"><div class="num">40m²</div><div class="num-label">Sala atual</div></div>
-      <div class="glass num-card"><div class="num">~R$5k</div><div class="num-label">Investimento mkt</div></div>
+      <div class="glass-card num-card"><div class="num warm">~7</div><div class="nl">Particulares/mes</div></div>
+      <div class="glass-card num-card"><div class="num warm">R$900</div><div class="nl">Consulta particular</div></div>
+      <div class="glass-card num-card"><div class="num warm">R$108</div><div class="nl">Consulta convenio</div></div>
+      <div class="glass-card num-card"><div class="num warm">~5%</div><div class="nl">% Particular</div></div>
+      <div class="glass-card num-card"><div class="num warm">40m²</div><div class="nl">Sala atual</div></div>
+      <div class="glass-card num-card"><div class="num warm">~R$5k</div><div class="nl">Investimento mkt</div></div>
     </div>
 
-    <h3 style="font-size:20px;font-weight:700;margin-bottom:28px;letter-spacing:-0.02em;">Termometro de Maturidade</h3>
-
-    <div class="score-table">
-      <div class="score-row">
-        <span class="score-name">Posicionamento Digital (Instagram)</span>
-        <div class="score-bar-wrap"><div class="score-bar-fill" style="width:20%"></div></div>
-        <span class="score-val critical">2/10</span>
-      </div>
-      <div class="score-row">
-        <span class="score-name">Produto Empacotado</span>
-        <div class="score-bar-wrap"><div class="score-bar-fill" style="width:10%"></div></div>
-        <span class="score-val critical">1/10</span>
-      </div>
-      <div class="score-row">
-        <span class="score-name">Trafego Pago (Qualidade)</span>
-        <div class="score-bar-wrap"><div class="score-bar-fill" style="width:20%"></div></div>
-        <span class="score-val critical">2/10</span>
-      </div>
-      <div class="score-row">
-        <span class="score-name">Script Comercial / Abordagem</span>
-        <div class="score-bar-wrap"><div class="score-bar-fill" style="width:10%"></div></div>
-        <span class="score-val critical">1/10</span>
-      </div>
-      <div class="score-row">
-        <span class="score-name">Estrutura de Time</span>
-        <div class="score-bar-wrap"><div class="score-bar-fill mid" style="width:30%"></div></div>
-        <span class="score-val warn">3/10</span>
-      </div>
-      <div class="score-row">
-        <span class="score-name">Processo de Vendas / Funil</span>
-        <div class="score-bar-wrap"><div class="score-bar-fill" style="width:10%"></div></div>
-        <span class="score-val critical">1/10</span>
-      </div>
-      <div class="score-row">
-        <span class="score-name">Prova Social (Depoimentos)</span>
-        <div class="score-bar-wrap"><div class="score-bar-fill" style="width:20%"></div></div>
-        <span class="score-val critical">2/10</span>
-      </div>
-      <div class="score-row">
-        <span class="score-name"><strong>Competencia Tecnica / Credenciais</strong></span>
-        <div class="score-bar-wrap"><div class="score-bar-fill great" style="width:90%"></div></div>
-        <span class="score-val excellent">9/10</span>
-      </div>
-      <div class="score-row">
-        <span class="score-name">Estrutura Fisica (Clinica)</span>
-        <div class="score-bar-wrap"><div class="score-bar-fill good" style="width:60%"></div></div>
-        <span class="score-val ok">6/10</span>
-      </div>
-      <div class="score-row">
-        <span class="score-name">Mentalidade / Identidade Premium</span>
-        <div class="score-bar-wrap"><div class="score-bar-fill mid" style="width:40%"></div></div>
-        <span class="score-val warn">4/10</span>
-      </div>
+    <h3 style="font-size:20px;font-weight:700;margin-bottom:28px;">Termometro de Maturidade</h3>
+    <div class="score-wrap">
+      <div class="s-row"><span class="s-name">Posicionamento Digital (Instagram)</span><div class="s-bar"><div class="s-fill low" style="width:20%"></div></div><span class="s-val c-red">2/10</span></div>
+      <div class="s-row"><span class="s-name">Produto Empacotado</span><div class="s-bar"><div class="s-fill low" style="width:10%"></div></div><span class="s-val c-red">1/10</span></div>
+      <div class="s-row"><span class="s-name">Trafego Pago (Qualidade)</span><div class="s-bar"><div class="s-fill low" style="width:20%"></div></div><span class="s-val c-red">2/10</span></div>
+      <div class="s-row"><span class="s-name">Script Comercial / Abordagem</span><div class="s-bar"><div class="s-fill low" style="width:10%"></div></div><span class="s-val c-red">1/10</span></div>
+      <div class="s-row"><span class="s-name">Estrutura de Time</span><div class="s-bar"><div class="s-fill mid" style="width:30%"></div></div><span class="s-val c-orange">3/10</span></div>
+      <div class="s-row"><span class="s-name">Processo de Vendas / Funil</span><div class="s-bar"><div class="s-fill low" style="width:10%"></div></div><span class="s-val c-red">1/10</span></div>
+      <div class="s-row"><span class="s-name">Prova Social (Depoimentos)</span><div class="s-bar"><div class="s-fill low" style="width:20%"></div></div><span class="s-val c-red">2/10</span></div>
+      <div class="s-row"><span class="s-name"><strong>Competencia Tecnica</strong></span><div class="s-bar"><div class="s-fill top" style="width:90%"></div></div><span class="s-val c-green">9/10</span></div>
+      <div class="s-row"><span class="s-name">Estrutura Fisica (Clinica)</span><div class="s-bar"><div class="s-fill high" style="width:60%"></div></div><span class="s-val c-yellow">6/10</span></div>
+      <div class="s-row"><span class="s-name">Mentalidade / Identidade Premium</span><div class="s-bar"><div class="s-fill mid" style="width:40%"></div></div><span class="s-val c-orange">4/10</span></div>
     </div>
 
-    <h3 style="font-size:20px;font-weight:700;margin-bottom:28px;letter-spacing:-0.02em;">Diagnostico Detalhado</h3>
-
-    <div class="diag-grid">
-      <div class="glass diag-card critical">
-        <h4>Instagram Incongruente</h4>
-        <p>Anuncios antigos aparecendo no Facebook vendendo varizes por convenio. O perfil nao conversa com o posicionamento premium. Falta bio estrategica, grid intencional e conteudo de autoridade.</p>
-      </div>
-      <div class="glass diag-card critical">
-        <h4>Sem Produto Definido</h4>
-        <p>Nao existe um protocolo empacotado com nome proprio (como o "Quadril 360" do Dr. Matheus). Vende procedimento avulso, nao transformacao. Isso limita preco, desejo e recorrencia.</p>
-      </div>
-      <div class="glass diag-card warn">
-        <h4>Trafego Amador</h4>
-        <p>R$ 3-4 mil em impulsionar no Instagram (sem estrategia) + R$ 1.200 em Google Ads com profissional que cobra R$ 450. Sem gestor profissional. Sem rastreamento de ROI real.</p>
-      </div>
-      <div class="glass diag-card critical">
-        <h4>Atendimento ao Lead Fragil</h4>
-        <p>Secretaria (Elayne) sem script, sem protocolo de ligacao, sem quebra de objecao. Leads chegam por WhatsApp e sao atendidos por texto — nao por ligacao ou video.</p>
-      </div>
-      <div class="glass diag-card warn">
-        <h4>Ju Sobrecarregada</h4>
-        <p>A esposa (Juliana) acumula: Instagram, WhatsApp, financeiro, automacao, edicao. Gargalo humanamente impossivel de sustentar. Funcoes precisam ser redistribuidas.</p>
-      </div>
-      <div class="glass diag-card warn">
-        <h4>Sem Rastreamento</h4>
-        <p>Nao existe controle claro de quantos leads entram, de onde vem, quantos convertem. A secretaria nao tem dados na ponta da lingua. Impossivel escalar sem medir.</p>
-      </div>
-      <div class="glass diag-card opportunity">
-        <h4>Oportunidade: Sala ao Lado</h4>
-        <p>Negociacao para dobrar a clinica: de 40m² para 80m². Valor caiu de R$ 400k para ~R$ 300k, com possibilidade de 100k entrada + parcelas. Shopping ideal para publico feminino.</p>
-      </div>
-      <div class="glass diag-card opportunity">
-        <h4>Oportunidade: Tayane (Closer)</h4>
-        <p>A tecnica de enfermagem tem talento natural para conversar e conectar. Potencial enorme para ser treinada como Closer. Um ativo escondido no time.</p>
-      </div>
+    <h3 style="font-size:20px;font-weight:700;margin-bottom:28px;">Diagnostico Detalhado</h3>
+    <div class="d-grid">
+      <div class="glass-card d-card crit"><h4>Instagram Incongruente</h4><p>Anuncios antigos no Facebook vendendo varizes por convenio. Perfil nao conversa com posicionamento premium. Falta bio estrategica, grid intencional e conteudo de autoridade.</p></div>
+      <div class="glass-card d-card crit"><h4>Sem Produto Definido</h4><p>Nao existe protocolo empacotado com nome proprio. Vende procedimento avulso, nao transformacao. Limita preco, desejo e recorrencia.</p></div>
+      <div class="glass-card d-card warn"><h4>Trafego Amador</h4><p>R$ 3-4k impulsionando sem estrategia + R$ 1.200 Google Ads com profissional de R$ 450. Sem gestor profissional. Sem rastreamento de ROI.</p></div>
+      <div class="glass-card d-card crit"><h4>Atendimento ao Lead Fragil</h4><p>Secretaria sem script, sem protocolo de ligacao, sem quebra de objecao. Leads atendidos por texto — nao por ligacao ou video.</p></div>
+      <div class="glass-card d-card warn"><h4>Ju Sobrecarregada</h4><p>Esposa acumula: Instagram, WhatsApp, financeiro, automacao, edicao. Gargalo humanamente impossivel de sustentar.</p></div>
+      <div class="glass-card d-card warn"><h4>Sem Rastreamento</h4><p>Sem controle de leads, origem, conversao. Secretaria sem dados na ponta da lingua. Impossivel escalar sem medir.</p></div>
+      <div class="glass-card d-card opp"><h4>Oportunidade: Sala ao Lado</h4><p>Dobrar clinica: 40m² → 80m². Valor caiu de R$ 400k para ~R$ 300k. 100k entrada + parcelas. Shopping ideal para publico feminino.</p></div>
+      <div class="glass-card d-card opp"><h4>Oportunidade: Tayane (Closer)</h4><p>Tecnica de enfermagem com talento natural para conversar e conectar. Potencial enorme como Closer. Ativo escondido no time.</p></div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- ============ PHOTO BREAK 1 ============ -->
+<div class="photo-break">
+  <div class="pb-img" style="background-image:url('https://images.pexels.com/photos/11437278/pexels-photo-11437278.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+  <div class="pb-overlay" style="background:linear-gradient(135deg,rgba(196,133,74,0.15),rgba(12,14,19,0.88),rgba(168,189,208,0.1))"></div>
+  <div class="pb-content">
+    <h2>De Urubu<br>para <span style="color:var(--warm-dark)">Aguia</span></h2>
+    <p>A transicao do convenio para o particular premium. O mapa completo, fase por fase.</p>
+  </div>
+</div>
 
-<!-- COMPARACAO -->
+<!-- ============ COMPARACAO ============ -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
-      <div class="label">Visao da Transformacao</div>
-      <h2>De onde voce esta para onde voce vai</h2>
-      <p>O Thiago de hoje versus o Thiago Cirurgiao Particular Premium. Cada item abaixo e um pilar que sera construido.</p>
+      <div class="label label-teal">Visao da Transformacao</div>
+      <h2>De onde voce esta para<br>onde voce vai</h2>
+      <p>O Thiago de hoje versus o Thiago Cirurgiao Particular Premium.</p>
     </div>
 
     <div class="compare">
-      <div class="glass compare-card a">
-        <div class="card-label red">Ponto A — Hoje</div>
+      <div class="glass-card cmp-card a">
+        <div class="cmp-label red">Ponto A — Hoje</div>
         <h3>O Cirurgiao do Convenio</h3>
         <ul>
           <li><span class="dot"></span>90-95% da receita vem de convenio (R$ 108/consulta)</li>
           <li><span class="dot"></span>5-7 pacientes particulares por mes</li>
           <li><span class="dot"></span>Sem produto empacotado — vende procedimento avulso</li>
           <li><span class="dot"></span>Instagram sem posicionamento, anuncios antigos</li>
-          <li><span class="dot"></span>Trafego amador (impulsionar + Google Ads sem estrategia)</li>
+          <li><span class="dot"></span>Trafego amador, sem gestor profissional</li>
           <li><span class="dot"></span>Secretaria atende leads por texto, sem script</li>
           <li><span class="dot"></span>Esposa acumula 5+ funcoes</li>
-          <li><span class="dot"></span>Sem rastreamento de metricas e ROI</li>
-          <li><span class="dot"></span>Grava conteudo por pressao, sem roteiro</li>
-          <li><span class="dot"></span>Sala de 40m²</li>
-          <li><span class="dot"></span>Sem prova social organizada</li>
+          <li><span class="dot"></span>Sem rastreamento de metricas</li>
+          <li><span class="dot"></span>Sala de 40m², sem prova social</li>
         </ul>
       </div>
-      <div class="glass compare-card b">
-        <div class="card-label green">Ponto B — Destino</div>
+      <div class="glass-card cmp-card b">
+        <div class="cmp-label green">Ponto B — Destino</div>
         <h3>O Cirurgiao Particular Premium</h3>
         <ul>
           <li><span class="dot"></span>50%+ da receita vem de particular premium</li>
-          <li><span class="dot"></span>15-20+ pacientes particulares por semana (R$ 900+)</li>
+          <li><span class="dot"></span>15-20+ pacientes particulares por semana</li>
           <li><span class="dot"></span>Protocolo proprio com nome, pagina e criativos</li>
-          <li><span class="dot"></span>Instagram de autoridade, congruente, cartao de visita</li>
-          <li><span class="dot"></span>Gestor de trafego profissional com ROI rastreado</li>
-          <li><span class="dot"></span>Closer treinada com script, ligacao e quebra de objecao</li>
-          <li><span class="dot"></span>Funcoes distribuidas — cada pessoa no seu papel</li>
-          <li><span class="dot"></span>Dashboard de metricas: leads, conversao, CAC, LTV</li>
-          <li><span class="dot"></span>Conteudo intencional, com roteiro e posicionamento</li>
-          <li><span class="dot"></span>Sala de 80m² (expansao concluida)</li>
-          <li><span class="dot"></span>Esteira de produtos com recorrencia e upsell cirurgico</li>
+          <li><span class="dot"></span>Instagram de autoridade, congruente</li>
+          <li><span class="dot"></span>Gestor de trafego com ROI rastreado</li>
+          <li><span class="dot"></span>Closer treinada com script e ligacao</li>
+          <li><span class="dot"></span>Funcoes distribuidas, time organizado</li>
+          <li><span class="dot"></span>Dashboard de metricas completo</li>
+          <li><span class="dot"></span>Sala 80m², esteira com recorrencia</li>
         </ul>
       </div>
     </div>
 
     <div class="quote-block">
-      <p>"O crescimento e a grande diferenca. O que diferencia dos outros vem na curva. Porque na reta, todo mundo acelera. E nesses pontos de inflexao, quando ta dificil, quando voce decide dar um passo maior que a perna, e nisso onde mora a diferenciacao."</p>
-      <div class="author">— Patrick, na reuniao com Thiago</div>
+      <p>"O crescimento e a grande diferenca. O que diferencia dos outros vem na curva. Porque na reta, todo mundo acelera. E nesses pontos de inflexao, quando voce decide dar um passo maior que a perna, e nisso onde mora a diferenciacao."</p>
+      <div class="auth">— Patrick, na reuniao com Thiago</div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ROADMAP -->
+<!-- ============ ROADMAP ============ -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
-      <div class="label">Roadmap Estrategico</div>
-      <h2>O Caminho Completo: 7 Fases</h2>
-      <p>Cada fase e sequencial e estrategica. Nao adianta fazer trafego sem produto. Nao adianta ter produto sem Instagram. A ordem importa.</p>
+      <div class="label label-warm">Roadmap Estrategico</div>
+      <h2>O Caminho Completo:<br>7 Fases</h2>
+      <p>Cada fase e sequencial. Nao adianta fazer trafego sem produto. A ordem importa.</p>
     </div>
 
     <div class="roadmap">
-
       <!-- F1 -->
-      <div class="phase">
-        <div class="phase-num">1</div>
-        <div class="phase-head">
-          <h3 class="phase-title">Empacotar o Produto</h3>
-          <span class="phase-tag urgent">Prioridade Maxima</span>
-        </div>
-        <p class="phase-desc">Transformar o que voce ja faz em um produto com nome, identidade e valor percebido. O cliente nao compra procedimento. Ele compra transformacao.</p>
-        <div class="glass task-list">
-          <div class="task"><div class="task-box"></div><div><h5>Definir o protocolo principal (Lipedema)</h5><p>Mapear: pre-operatorio, procedimento, pos-operatorio, acompanhamento. Documentar cada etapa do que voce ja faz. Isso vira o "metodo".</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Criar o nome do produto</h5><p>Um nome unico, proprietario, que so voce tem. Nao "Tratamento de Lipedema" — mas algo como um metodo seu. Usar IA para brainstormar. Gerar curiosidade e desejo.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Definir a promessa de transformacao</h5><p>Qual e o antes e depois? O que muda na vida da paciente? Liberdade de usar roupa curta? Autoestima? Fim da dor? Esse e o produto real — nao o bisturi.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Precificar o protocolo como produto</h5><p>Nao cobrar "por cirurgia" — cobrar pelo protocolo completo (consulta + exames + procedimento + acompanhamento). Valor unico, investimento na transformacao.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Criar produto cirurgico tambem</h5><p>Assim como o "Quadril 360" do Dr. Matheus: antes, durante e depois da cirurgia como pacote premium com acompanhamento completo.</p></div></div>
+      <div class="phase"><div class="p-num">1</div>
+        <div class="p-head"><h3 class="p-title">Empacotar o Produto</h3><span class="p-tag urg">Prioridade Maxima</span></div>
+        <p class="p-desc">Transformar o que voce ja faz em um produto com nome, identidade e valor percebido. O cliente compra transformacao, nao procedimento.</p>
+        <div class="glass-card tl">
+          <div class="tk"><div class="tk-box"></div><div><h5>Definir o protocolo principal (Lipedema)</h5><p>Mapear: pre-op, procedimento, pos-op, acompanhamento. Documentar cada etapa. Isso vira o "metodo".</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Criar o nome do produto</h5><p>Nome unico, proprietario. Nao "Tratamento de Lipedema". Usar IA para brainstormar. Gerar curiosidade e desejo.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Definir a promessa de transformacao</h5><p>O que muda na vida da paciente? Liberdade, autoestima, fim da dor? Esse e o produto real.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Precificar como protocolo completo</h5><p>Cobrar pelo pacote (consulta + exames + procedimento + acompanhamento). Valor unico, investimento.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Criar produto cirurgico tambem</h5><p>Modelo "Quadril 360": antes, durante, depois. Pacote premium com acompanhamento completo.</p></div></div>
         </div>
       </div>
 
       <!-- F2 -->
-      <div class="phase">
-        <div class="phase-num">2</div>
-        <div class="phase-head">
-          <h3 class="phase-title">Posicionamento no Instagram</h3>
-          <span class="phase-tag urgent">Prioridade Maxima</span>
-        </div>
-        <p class="phase-desc">O Instagram e o cartao de visita. Quando o lead chega pelo trafego, ele vai direto no seu perfil para validar. Se nao conversa com o posicionamento premium, voce perde a venda antes de atender.</p>
-        <div class="glass task-list">
-          <div class="task"><div class="task-box"></div><div><h5><span class="urgency-tag"><span class="pulse"></span>EMERGENCIAL</span> Limpar anuncios antigos</h5><p>Remover imediatamente os anuncios antigos no Facebook que vendem varizes por convenio. Gera ruido enorme e mata o posicionamento premium.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Reescrever a bio do Instagram</h5><p>Linha 1: Quem voce e e a transformacao que entrega. Linha 2: Autoridade (titulos, credenciais). Claro que voce e premium e transforma vidas.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Montar o grid das 10-12 primeiras postagens</h5><p>O "cartao de visita visual". Prova social, conteudo de autoridade, bastidores da clinica, produto/protocolo, sua historia. Qualidade > quantidade.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Destaques estrategicos (Stories fixos)</h5><p>Organizados: "Meu Metodo" / "Resultados" / "Depoimentos" / "Clinica" / "Sobre Mim". Cada destaque e um mini funil de convencimento.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Verificar o perfil (selo azul)</h5><p>Perfil verificado passa autoridade instantanea. Basico para o posicionamento premium.</p></div></div>
+      <div class="phase"><div class="p-num">2</div>
+        <div class="p-head"><h3 class="p-title">Posicionamento no Instagram</h3><span class="p-tag urg">Prioridade Maxima</span></div>
+        <p class="p-desc">O Instagram e o cartao de visita. O lead vai direto no perfil para validar. Se nao conversa com o premium, perde a venda antes de atender.</p>
+        <div class="glass-card tl">
+          <div class="tk"><div class="tk-box"></div><div><h5><span class="urg-tag"><span class="pls"></span>EMERGENCIAL</span> Limpar anuncios antigos</h5><p>Remover anuncios no Facebook que vendem varizes por convenio. Mata o posicionamento premium.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Reescrever a bio</h5><p>Quem voce e + transformacao que entrega + autoridade. Claro que voce e premium e transforma vidas.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Grid das 10-12 primeiras postagens</h5><p>Cartao de visita visual: prova social, autoridade, bastidores, produto, sua historia. Qualidade > quantidade.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Destaques estrategicos</h5><p>"Meu Metodo" / "Resultados" / "Depoimentos" / "Clinica" / "Sobre Mim". Mini funil de convencimento.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Verificar o perfil (selo azul)</h5><p>Autoridade instantanea. Basico para posicionamento premium.</p></div></div>
         </div>
       </div>
 
       <!-- F3 -->
-      <div class="phase">
-        <div class="phase-num">3</div>
-        <div class="phase-head">
-          <h3 class="phase-title">Roteiros e Conteudo Estrategico</h3>
-          <span class="phase-tag normal">Semana 2-3</span>
-        </div>
-        <p class="phase-desc">Parar de gravar por gravar. Cada conteudo precisa ter intencao: ou atrai, ou converte, ou posiciona. Dois conteudos excelentes por semana valem mais que dois mediocres por dia.</p>
-        <div class="glass task-list">
-          <div class="task"><div class="task-box"></div><div><h5>Criar banco de roteiros por categoria</h5><p>Autoridade (historia, credenciais), Transformacao (antes/depois), Educacao (dor do paciente), Prova Social (depoimentos), Bastidores (clinica, equipe).</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Gravar conteudo com intencao durante atendimentos</h5><p>Tayane filma: consultas (paciente de costas), momentos de conversa, bastidores. Ser intencional: "vem ca, so pega o celular e grava".</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Coletar prova social sistematicamente</h5><p>Todo paciente de retorno satisfeito: "Posso te fazer umas perguntas? Como voce era antes, como esta agora?" — durante a consulta, natural.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Sessao de gravacao profissional (com Patrick)</h5><p>Encontro presencial com videomaker: corrigir oratoria, postura, gravar lote de conteudos. Enche a primeira pagina do Instagram de uma vez.</p></div></div>
+      <div class="phase"><div class="p-num">3</div>
+        <div class="p-head"><h3 class="p-title">Roteiros e Conteudo</h3><span class="p-tag norm">Semana 2-3</span></div>
+        <p class="p-desc">Parar de gravar por gravar. Cada conteudo com intencao: atrai, converte ou posiciona. Dois excelentes valem mais que dez mediocres.</p>
+        <div class="glass-card tl">
+          <div class="tk"><div class="tk-box"></div><div><h5>Banco de roteiros por categoria</h5><p>Autoridade, Transformacao, Educacao, Prova Social, Bastidores. Roteiros pre-prontos.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Gravar durante atendimentos</h5><p>Tayane filma consultas (paciente de costas), conversas, bastidores. Intencional.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Coletar prova social</h5><p>Todo retorno satisfeito: pedir depoimento. "Como voce era antes? Como esta agora?"</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Sessao profissional com Patrick</h5><p>Videomaker, oratoria, postura. Gravar lote de conteudos de uma vez.</p></div></div>
         </div>
       </div>
 
       <!-- F4 -->
-      <div class="phase">
-        <div class="phase-num">4</div>
-        <div class="phase-head">
-          <h3 class="phase-title">Pagina do Produto + Criativos</h3>
-          <span class="phase-tag normal">Semana 2-3</span>
-        </div>
-        <p class="phase-desc">O produto precisa de uma casa. Uma landing page que venda a transformacao, nao o procedimento. E criativos que gerem desejo e clique.</p>
-        <div class="glass task-list">
-          <div class="task"><div class="task-box"></div><div><h5>Construir a Landing Page do protocolo</h5><p>Headline de transformacao, dor da paciente, o metodo (sem revelar tudo), depoimentos, antes/depois, CTA para agendar. Design premium.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Criar criativos para trafego pago</h5><p>Minimo 5: video curto (reels), carrossel, imagem estatica, depoimento em video, antes/depois. Cada criativo fala com uma dor especifica.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Pagina secundaria para cirurgia (se aplicavel)</h5><p>Se o produto cirurgico for criado na Fase 1, criar landing page especifica para o protocolo cirurgico premium.</p></div></div>
+      <div class="phase"><div class="p-num">4</div>
+        <div class="p-head"><h3 class="p-title">Pagina + Criativos</h3><span class="p-tag norm">Semana 2-3</span></div>
+        <p class="p-desc">O produto precisa de uma casa. Landing page que venda transformacao. Criativos que gerem desejo.</p>
+        <div class="glass-card tl">
+          <div class="tk"><div class="tk-box"></div><div><h5>Landing Page do protocolo</h5><p>Headline, dor, metodo, depoimentos, CTA para agendar. Design premium e congruente.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>5+ criativos para trafego</h5><p>Video, carrossel, estatico, depoimento, antes/depois. Cada um fala com uma dor.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Pagina para cirurgia (se aplicavel)</h5><p>Landing page do protocolo cirurgico premium.</p></div></div>
         </div>
       </div>
 
       <!-- F5 -->
-      <div class="phase">
-        <div class="phase-num">5</div>
-        <div class="phase-head">
-          <h3 class="phase-title">Trafego Pago Profissional</h3>
-          <span class="phase-tag normal">Semana 3-4</span>
-        </div>
-        <p class="phase-desc">Sair do impulsionar amador. Gestor de trafego, segmentacao inteligente, criativos que convertem e rastreamento completo. Os mesmos R$ 3-4 mil vao fazer "miseria" quando bem direcionados.</p>
-        <div class="glass task-list">
-          <div class="task"><div class="task-box"></div><div><h5>Contratar gestor de trafego profissional</h5><p>Campanhas no Meta Ads com objetivo de leads qualificados. Segmentacao: mulheres, Porto Alegre, faixa etaria, interesses alinhados.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Manter Google Ads mas otimizar</h5><p>Demanda ativa funciona. Exigir que apareca entre os 3 primeiros. Aumentar investimento conforme ROI se prove.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Implementar rastreamento completo</h5><p>UTMs em todos os links. Saber exatamente de onde vem cada lead. Sem rastreamento, nao da pra escalar com inteligencia.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Definir meta de ROI e escala</h5><p>Hoje: ~R$ 5k → ~7 particulares (R$ 6.300). Meta: R$ 5k → 15+ particulares (R$ 13.500+). Provar ROI, escalar.</p></div></div>
+      <div class="phase"><div class="p-num">5</div>
+        <div class="p-head"><h3 class="p-title">Trafego Pago Profissional</h3><span class="p-tag norm">Semana 3-4</span></div>
+        <p class="p-desc">Sair do impulsionar. Gestor de trafego, segmentacao, criativos e rastreamento. R$ 3-4k bem direcionados fazem miseria.</p>
+        <div class="glass-card tl">
+          <div class="tk"><div class="tk-box"></div><div><h5>Contratar gestor de trafego</h5><p>Meta Ads com leads qualificados. Mulheres, Porto Alegre, interesses alinhados.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Otimizar Google Ads</h5><p>Aparecer entre os 3 primeiros. Escalar conforme ROI se prove.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Rastreamento completo</h5><p>UTMs em tudo. Saber de onde vem cada lead.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Meta de ROI e escala</h5><p>R$ 5k → 15+ particulares (R$ 13.500+). Provar, escalar.</p></div></div>
         </div>
       </div>
 
       <!-- F6 -->
-      <div class="phase">
-        <div class="phase-num">6</div>
-        <div class="phase-head">
-          <h3 class="phase-title">Abordagem, Script e Processo Comercial</h3>
-          <span class="phase-tag urgent">Prioridade Maxima</span>
-        </div>
-        <p class="phase-desc">O coracao do faturamento. A secretaria e a primeira impressao. A ligacao converte mais que texto. O script orienta sem engessar. E o acompanhamento fecha.</p>
-        <div class="glass task-list">
-          <div class="task"><div class="task-box"></div><div><h5>Criar script de atendimento ao lead</h5><p>Guia: como cumprimentar, quais perguntas fazer, como qualificar, como quebrar objecoes ("ta caro", "vou pensar"), como direcionar para agendamento.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Implementar protocolo de LIGACAO</h5><p>Lead mandou mensagem = ligar. A ligacao converte 5x mais que texto. Treinar para ligar em ate 5 minutos apos o lead chegar.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Treinar a Closer (Tayane)</h5><p>Talento natural para conversar. Treina-la: recebe lead qualificado, faz ligacao, quebra objecao, agenda. Tirar essa funcao da Elayne.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Acompanhar o atendimento de perto</h5><p>Abrir WhatsApp Business, ler conversas, ver velocidade/tom de resposta. Ficar incomodado. Esse "olhar de dono" separa clinica amadora da premium.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Criar protocolo de follow-up</h5><p>Nao respondeu em 24h: ligar. "Vou pensar": follow-up em 48h. Agendou e nao veio: ligar no dia. Nenhum lead morre sem 3 tentativas.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Cobrar consulta antecipada</h5><p>Paciente premium paga antes. Elimina faltas, filtra quem e serio, posiciona valor. Pagamento antecipado ou sinal.</p></div></div>
+      <div class="phase"><div class="p-num">6</div>
+        <div class="p-head"><h3 class="p-title">Script e Processo Comercial</h3><span class="p-tag urg">Prioridade Maxima</span></div>
+        <p class="p-desc">Coracao do faturamento. Ligacao converte mais que texto. Script orienta sem engessar. Acompanhamento fecha.</p>
+        <div class="glass-card tl">
+          <div class="tk"><div class="tk-box"></div><div><h5>Script de atendimento ao lead</h5><p>Cumprimentar, qualificar, quebrar objecoes ("ta caro", "vou pensar"), direcionar agendamento.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Protocolo de LIGACAO</h5><p>Lead = ligar em 5 min. Ligacao converte 5x mais que texto.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Treinar Tayane como Closer</h5><p>Liga, quebra objecao, agenda. Tirar funcao de conversao da Elayne.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Olhar de dono no WhatsApp</h5><p>Ler conversas, ver velocidade/tom. Ficar incomodado. Esse olhar separa amador de premium.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Protocolo de follow-up</h5><p>24h sem resposta: ligar. "Vou pensar": 48h. Faltou: ligar no dia. 3 tentativas minimas.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Cobrar antecipado</h5><p>Premium paga antes. Elimina faltas, filtra, posiciona valor.</p></div></div>
         </div>
       </div>
 
       <!-- F7 -->
-      <div class="phase">
-        <div class="phase-num">7</div>
-        <div class="phase-head">
-          <h3 class="phase-title">Estrutura, Time e Escala</h3>
-          <span class="phase-tag normal">Semana 4+</span>
-        </div>
-        <p class="phase-desc">Produto, posicionamento, trafego e processo rodando. Agora organizar a casa para escalar. Redistribuir funcoes, profissionalizar a operacao.</p>
-        <div class="glass task-list">
-          <div class="task"><div class="task-box"></div><div><h5>Redistribuir funcoes do time</h5><p>Cada pessoa com funcao clara. Ju nao pode ser Instagram + WhatsApp + financeiro + automacao + edicao. Ver organograma abaixo.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Dashboard de metricas semanal</h5><p>Quantos leads, de onde, quantos atendidos, agendaram, vieram, compraram, ticket medio, ROI. Secretaria com isso na ponta da lingua.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Expansao da sala (40m² → 80m²)</h5><p>Fechar negociacao. Fundamental para mais atendimentos premium, equipamentos novos e passar mais valor.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Contratar social media</h5><p>Tirar edicao/publicacao da Ju. Freelancer que execute planejamento de conteudo, edicao de videos, publicacoes.</p></div></div>
-          <div class="task"><div class="task-box"></div><div><h5>Criar esteira de recorrencia</h5><p>Consulta → Protocolo → Acompanhamento → Injetaveis → Cirurgia. LTV do paciente cresce exponencialmente.</p></div></div>
+      <div class="phase"><div class="p-num">7</div>
+        <div class="p-head"><h3 class="p-title">Estrutura, Time e Escala</h3><span class="p-tag norm">Semana 4+</span></div>
+        <p class="p-desc">Tudo rodando. Agora organizar a casa para escalar. Redistribuir, profissionalizar, crescer.</p>
+        <div class="glass-card tl">
+          <div class="tk"><div class="tk-box"></div><div><h5>Redistribuir funcoes</h5><p>Cada pessoa com funcao clara. Ver organograma abaixo.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Dashboard semanal</h5><p>Leads, origem, atendidos, agendados, conversao, ticket, ROI.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Expansao 40m² → 80m²</h5><p>Fechar sala ao lado. Mais atendimentos, equipamentos, valor.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Contratar social media</h5><p>Freelancer para edicao, publicacao, conteudo. Tira da Ju.</p></div></div>
+          <div class="tk"><div class="tk-box"></div><div><h5>Esteira de recorrencia</h5><p>Consulta → Protocolo → Injetaveis → Cirurgia. LTV exponencial.</p></div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- ============ PHOTO BREAK 2 ============ -->
+<div class="photo-break">
+  <div class="pb-img" style="background-image:url('https://images.pexels.com/photos/1250655/pexels-photo-1250655.jpeg?auto=compress&cs=tinysrgb&w=1920')"></div>
+  <div class="pb-overlay" style="background:linear-gradient(180deg,rgba(8,8,13,0.6),rgba(8,8,13,0.92))"></div>
+  <div class="pb-content">
+    <h2>Estrutura que<br><span style="color:var(--warm)">Escala</span></h2>
+    <p>O time certo, no lugar certo, com as funcoes certas.</p>
+  </div>
+</div>
 
-<!-- TEAM -->
+<!-- ============ TEAM ============ -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
-      <div class="label">Estrutura do Time</div>
-      <h2>Redistribuicao de Funcoes</h2>
-      <p>Cada pessoa no lugar certo, fazendo o que faz de melhor. Funcoes claras, cobranca clara, resultado claro.</p>
+      <div class="label label-accent">Estrutura do Time</div>
+      <h2>Redistribuicao<br>de Funcoes</h2>
+      <p>Cada pessoa no lugar certo. Funcoes claras, cobranca clara, resultado claro.</p>
     </div>
 
-    <table class="team-table">
-      <thead>
-        <tr><th>Pessoa</th><th>Funcao Atual</th><th>Funcao Ideal</th><th>Obs</th></tr>
-      </thead>
+    <table class="t-table">
+      <thead><tr><th>Pessoa</th><th>Funcao Atual</th><th>Funcao Ideal</th><th>Obs</th></tr></thead>
       <tbody>
-        <tr>
-          <td>Dr. Thiago</td>
-          <td>Faz tudo + atende + opera</td>
-          <td>Atendimento premium + Cirurgia + Rosto da marca</td>
-          <td>Sair da operacao, ir para o estrategico</td>
-        </tr>
-        <tr>
-          <td>Juliana (Ju)</td>
-          <td>Instagram + WhatsApp + Financeiro + Automacao + Edicao</td>
-          <td>Gestao da clinica + Financeiro + Supervisao</td>
-          <td>Formacao em administracao + pos gestao de clinicas</td>
-        </tr>
-        <tr>
-          <td>Elayne</td>
-          <td>Agendamento + Telefone + WhatsApp (leads)</td>
-          <td>Recepcao + Agendamento + Metricas</td>
-          <td>Otima no presencial. Tirar funcao de converter leads</td>
-        </tr>
-        <tr>
-          <td>Tayane</td>
-          <td>Curativos + Crioterapia + Injetaveis</td>
-          <td><strong>Closer</strong> + Procedimentos</td>
-          <td>Talento natural para conversar. Treinar como Closer</td>
-        </tr>
-        <tr class="new-hire">
-          <td>Gestor de Trafego ✦</td>
-          <td>—</td>
-          <td>Terceirizado</td>
-          <td>Campanhas Meta Ads + Google Ads. Relatorio semanal</td>
-        </tr>
-        <tr class="new-hire">
-          <td>Social Media ✦</td>
-          <td>—</td>
-          <td>Terceirizado</td>
-          <td>Edicao, publicacao, planejamento. Tira funcao da Ju</td>
-        </tr>
+        <tr><td>Dr. Thiago</td><td>Faz tudo + atende + opera</td><td>Atendimento premium + Cirurgia + Rosto da marca</td><td>Sair da operacao, ir para o estrategico</td></tr>
+        <tr><td>Juliana (Ju)</td><td>Instagram + WhatsApp + Financeiro + Automacao + Edicao</td><td>Gestao + Financeiro + Supervisao</td><td>Formacao em adm + pos gestao clinicas</td></tr>
+        <tr><td>Elayne</td><td>Agendamento + Telefone + WhatsApp</td><td>Recepcao + Agendamento + Metricas</td><td>Otima no presencial. Tirar conversao</td></tr>
+        <tr><td>Tayane</td><td>Curativos + Crioterapia + Injetaveis</td><td><strong>Closer</strong> + Procedimentos</td><td>Talento natural. Treinar como Closer</td></tr>
+        <tr class="nh"><td>Gestor de Trafego ✦</td><td>—</td><td>Terceirizado</td><td>Meta Ads + Google Ads. Relatorio semanal</td></tr>
+        <tr class="nh"><td>Social Media ✦</td><td>—</td><td>Terceirizado</td><td>Edicao, publicacao, planejamento</td></tr>
       </tbody>
     </table>
   </div>
@@ -1134,123 +932,77 @@ h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; }
 
 <div class="divider"></div>
 
-<!-- FUNNEL -->
+<!-- ============ FUNNEL ============ -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
-      <div class="label">Fluxo Comercial</div>
-      <h2>O Funil do Paciente Premium</h2>
-      <p>Cada etapa conectada e congruente. Se uma quebra, todo o investimento anterior se perde.</p>
+      <div class="label label-teal">Fluxo Comercial</div>
+      <h2>O Funil do Paciente<br>Premium</h2>
+      <p>Cada etapa conectada. Se uma quebra, todo investimento anterior se perde.</p>
     </div>
 
     <div>
-      <div class="funnel-step">
-        <div class="funnel-num">1</div>
-        <div class="glass funnel-bar f-blue">
-          <div><h5>Atracao (Trafego)</h5><div class="f-desc">Anuncio Meta/Google Ads → Lead clica → WhatsApp ou Landing Page</div></div>
-          <div class="f-who">Gestor de Trafego</div>
-        </div>
-      </div>
-      <div class="funnel-step">
-        <div class="funnel-num">2</div>
-        <div class="glass funnel-bar f-accent">
-          <div><h5>Validacao (Instagram)</h5><div class="f-desc">Lead entra no perfil → Valida autoridade e prova social → Decide se confia</div></div>
-          <div class="f-who">Dr. Thiago + Social Media</div>
-        </div>
-      </div>
-      <div class="funnel-step">
-        <div class="funnel-num">3</div>
-        <div class="glass funnel-bar f-orange">
-          <div><h5>Conversao (Abordagem)</h5><div class="f-desc">Lead manda mensagem → Closer liga em 5 min → Script + Quebra objecao → Agenda</div></div>
-          <div class="f-who">Tayane (Closer)</div>
-        </div>
-      </div>
-      <div class="funnel-step">
-        <div class="funnel-num">4</div>
-        <div class="glass funnel-bar f-gold">
-          <div><h5>Encantamento (Consulta)</h5><div class="f-desc">Experiencia premium na clinica → Vende a transformacao → Fecha protocolo</div></div>
-          <div class="f-who">Dr. Thiago + Elayne</div>
-        </div>
-      </div>
-      <div class="funnel-step">
-        <div class="funnel-num">5</div>
-        <div class="glass funnel-bar f-green">
-          <div><h5>Retencao (Esteira)</h5><div class="f-desc">Pos-protocolo → Injetaveis → Crioterapia → Acompanhamento → Cirurgia (upsell)</div></div>
-          <div class="f-who">Dr. Thiago + Tayane</div>
-        </div>
-      </div>
+      <div class="f-step"><div class="f-num">1</div><div class="glass-card f-bar fb-blue"><div><h5>Atracao (Trafego)</h5><div class="fd">Meta/Google Ads → Lead clica → WhatsApp ou LP</div></div><div class="fw">Gestor de Trafego</div></div></div>
+      <div class="f-step"><div class="f-num">2</div><div class="glass-card f-bar fb-purple"><div><h5>Validacao (Instagram)</h5><div class="fd">Lead entra no perfil → Valida autoridade → Decide</div></div><div class="fw">Thiago + Social Media</div></div></div>
+      <div class="f-step"><div class="f-num">3</div><div class="glass-card f-bar fb-orange"><div><h5>Conversao (Abordagem)</h5><div class="fd">Lead manda msg → Closer liga em 5 min → Agenda</div></div><div class="fw">Tayane (Closer)</div></div></div>
+      <div class="f-step"><div class="f-num">4</div><div class="glass-card f-bar fb-gold"><div><h5>Encantamento (Consulta)</h5><div class="fd">Experiencia premium → Vende transformacao → Fecha</div></div><div class="fw">Dr. Thiago + Elayne</div></div></div>
+      <div class="f-step"><div class="f-num">5</div><div class="glass-card f-bar fb-green"><div><h5>Retencao (Esteira)</h5><div class="fd">Pos-protocolo → Injetaveis → Crioterapia → Cirurgia</div></div><div class="fw">Dr. Thiago + Tayane</div></div></div>
     </div>
 
     <div class="math-box">
       <h3>Matematica da Transformacao</h3>
       <ul>
         <li><strong>Investimento em trafego:</strong> R$ 5.000/mes</li>
-        <li><strong>Leads qualificados/mes:</strong> 80-120 (com gestor profissional)</li>
-        <li><strong>Taxa de agendamento (Closer treinada):</strong> 25-30%</li>
+        <li><strong>Leads qualificados/mes:</strong> 80-120</li>
+        <li><strong>Taxa de agendamento (Closer):</strong> 25-30%</li>
         <li><strong>Consultas particulares/mes:</strong> 20-36</li>
-        <li><strong>Ticket medio consulta:</strong> R$ 900</li>
-        <li><strong>Receita so de consultas:</strong> R$ 18.000 - R$ 32.400/mes</li>
-        <li><strong>Conversao para protocolo/cirurgia (30-40%):</strong> 6-14 procedimentos</li>
+        <li><strong>Ticket medio:</strong> R$ 900</li>
+        <li><strong>Receita consultas:</strong> R$ 18.000 - R$ 32.400/mes</li>
+        <li><strong>Conversao protocolo/cirurgia (30-40%):</strong> 6-14 procedimentos</li>
         <li><strong>Receita protocolos + cirurgias:</strong> R$ 30.000 - R$ 100.000+/mes</li>
       </ul>
-      <div class="highlight">E isso e so o comeco. Com previsibilidade, a escala e questao de aumentar investimento.</div>
+      <div class="hl">Com previsibilidade, a escala e questao de aumentar investimento.</div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- THIS WEEK -->
+<!-- ============ THIS WEEK ============ -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
-      <div class="label">Acao Imediata</div>
-      <h2>O que fazer esta semana</h2>
-      <p>Nao precisa esperar tudo estar pronto. Essas acoes podem ser executadas agora, antes da proxima reuniao.</p>
+      <div class="label label-warm">Acao Imediata</div>
+      <h2>O que fazer<br>esta semana</h2>
+      <p>Nao espere tudo pronto. Essas acoes podem ser executadas agora.</p>
     </div>
 
-    <div class="week-tasks">
-      <div class="week-task">
-        <div class="week-num">1</div>
-        <div><h5>Acompanhar a secretaria de perto</h5><p>Abrir WhatsApp Business. Ler conversas dos leads. Avaliar velocidade, tom, qualidade. Anotar o que esta errado. Vai te incomodar — essa e a intencao.</p></div>
-      </div>
-      <div class="week-task">
-        <div class="week-num">2</div>
-        <div><h5>Criar script basico com IA</h5><p>Colar exemplos das conversas no ChatGPT/Claude: "Sou cirurgiao vascular, minha secretaria atende leads assim. Me faz um script que converta, com quebra de objecao."</p></div>
-      </div>
-      <div class="week-task">
-        <div class="week-num">3</div>
-        <div><h5>Pegar 2-3 depoimentos de pacientes</h5><p>Nos proximos atendimentos, pacientes satisfeitos: "Posso te fazer umas perguntas?" Tayane filma, paciente de costas. Prova social.</p></div>
-      </div>
-      <div class="week-task">
-        <div class="week-num">4</div>
-        <div><h5>Pensar no nome do produto</h5><p>Brainstormar nomes para o protocolo de lipedema. Usar IA, conversar com pessoas. Trazer opcoes para a proxima reuniao.</p></div>
-      </div>
-      <div class="week-task">
-        <div class="week-num">5</div>
-        <div><h5>Remover anuncios antigos do Facebook</h5><p>Entrar no gerenciador e desativar qualquer campanha antiga que venda convenio ou tenha posicionamento incongruente com premium.</p></div>
-      </div>
-      <div class="week-task">
-        <div class="week-num">6</div>
-        <div><h5>Pedir fechamento de metricas</h5><p>Mandar agora: "Me manda o fechamento de consultas particulares desse mes, quantos leads entraram, de onde vieram." Se nao tiver, ja e diagnostico.</p></div>
-      </div>
+    <div class="wk">
+      <div class="wk-item"><div class="wk-n">1</div><div><h5>Acompanhar a secretaria</h5><p>WhatsApp Business. Ler conversas. Avaliar velocidade, tom, qualidade. Vai incomodar — essa e a intencao.</p></div></div>
+      <div class="wk-item"><div class="wk-n">2</div><div><h5>Criar script com IA</h5><p>Colar exemplos no Claude/GPT: "Minha secretaria atende assim. Me faz um script com quebra de objecao."</p></div></div>
+      <div class="wk-item"><div class="wk-n">3</div><div><h5>Pegar 2-3 depoimentos</h5><p>Pacientes satisfeitos: "Posso fazer umas perguntas?" Tayane filma, paciente de costas.</p></div></div>
+      <div class="wk-item"><div class="wk-n">4</div><div><h5>Pensar no nome do produto</h5><p>Brainstormar nomes pro protocolo de lipedema. Trazer opcoes na proxima reuniao.</p></div></div>
+      <div class="wk-item"><div class="wk-n">5</div><div><h5>Remover anuncios antigos</h5><p>Gerenciador de anuncios. Desativar tudo que vende convenio ou e incongruente.</p></div></div>
+      <div class="wk-item"><div class="wk-n">6</div><div><h5>Pedir metricas da secretaria</h5><p>"Me manda o fechamento de particulares, quantos leads, de onde vieram." Se nao tiver, ja e diagnostico.</p></div></div>
     </div>
 
     <div class="quote-block">
-      <p>"Nao e em quanto tempo. E em quantas vezes. Se voce coloca feijao na panela normal, demora duas horas. Se coloca na panela de pressao, 25 minutos."</p>
-      <div class="author">— Dr. Matheus, sobre velocidade de resultados</div>
+      <p>"Nao e em quanto tempo. E em quantas vezes. Feijao na panela normal demora duas horas. Na panela de pressao, 25 minutos."</p>
+      <div class="auth">— Dr. Matheus</div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- CTA -->
+<!-- ============ CTA ============ -->
 <section class="cta">
-  <h2>O mapa esta nas suas maos,<br><span class="gradient">Thiago.</span></h2>
-  <p>Voce ja sabe voar. Agora e hora de parar de comer carnica e cacar como gaviao. A transicao comeca hoje. E voce nao esta mais sozinho.</p>
-  <div class="cta-badge">Mentoria Cirurgiao Particular Premium</div>
-  <p style="margin-top:24px;font-size:13px;color:var(--white-40)">Dr. Matheus & Patrick Suyti — CPP — Abril 2026</p>
+  <div class="cta-bg"></div>
+  <div class="cta-overlay"></div>
+  <div class="cta-content">
+    <h2>O mapa esta nas<br>suas maos,<br><span class="grad-warm">Thiago.</span></h2>
+    <p>Voce ja sabe voar. Agora e hora de parar de comer carnica e cacar como gaviao. A transicao comeca hoje.</p>
+    <div class="cta-btn">Mentoria Cirurgiao Particular Premium</div>
+    <p style="margin-top:24px;font-size:13px;color:var(--w40)">Dr. Matheus & Patrick Suyti — CPP — Abril 2026</p>
+  </div>
 </section>
 
 <div class="footer">
@@ -1259,13 +1011,12 @@ h1,h2,h3,h4 { font-family: 'Space Grotesk', sans-serif; }
 </div>
 
 <script>
-document.querySelectorAll('.task-box').forEach(el=>{
+document.querySelectorAll('.tk-box').forEach(el=>{
   el.addEventListener('click',function(){
     this.classList.toggle('done');
     this.textContent=this.classList.contains('done')?'✓':'';
   });
 });
 </script>
-
 </body>
 </html>
